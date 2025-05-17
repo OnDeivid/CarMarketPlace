@@ -1,13 +1,25 @@
-import { AuthContextType, UserData } from "../context/AuthContext";
-import { LoginForm } from "../hooks/useForm";
 import axios from "axios";
 
-export const onLogin = async (formValue: LoginForm): Promise<UserData | null> => {
+import { UserData } from "../context/AuthContext";
+import { LoginForm, RegisterForm } from "../hooks/useForm";
+
+export const onLogin = async (formValue: LoginForm): Promise<UserData> => {
     try {
         const response = await axios.post('http://localhost:3000/users/login', formValue);
         return response.data.data
-    } catch (error) {
-        console.error('Login failed:', error);
-        return null;
+    } catch (error: any) {
+        const message = error?.response?.data?.error || 'Registration failed. Please try again.';
+        return Promise.reject(new Error(message));
     }
 };
+
+
+export const onRegister = async (formValue: RegisterForm) => {
+    try {
+        const response = await axios.post('http://localhost:3000/users/register', formValue);
+        return response.data;
+    } catch (error: any) {
+        const message = error?.response?.data?.error || 'Registration failed. Please try again.';
+        return Promise.reject(new Error(message));
+    }
+}
