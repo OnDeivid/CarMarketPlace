@@ -1,15 +1,18 @@
-import useForm from "../../hooks/useForm";
 import React, { useContext } from "react"
-import { AuthContext, AuthContextType, UserData } from "../../context/AuthContext";
-import { onLogin } from "../../service/authService";
+import useForm, { LoginForm } from "../../hooks/useForm";
+
 import { useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../../context/AuthContext";
+
+import { onLogin } from "../../service/authService";
 
 export default function Login() {
     const auth = useContext(AuthContext)
-    const [formValue, onChangeFormValue] = useForm({ email: '', password: '' })
+    const [formValue, onChangeFormValue] = useForm<LoginForm>({ email: '', password: '' })
     const navigate = useNavigate()
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void> {
         e.preventDefault();
         try {
             const userData = await onLogin(formValue)
