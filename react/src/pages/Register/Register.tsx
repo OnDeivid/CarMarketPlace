@@ -31,9 +31,9 @@ export default function Register() {
     }
 
     return (
-        <div className='flex justify-center justify-items-center items-center bg-loginBackground h-screen'>
-            <div className='bg-white shadow-lg text-center rounded-[10px]'>
-                <form method="post" onSubmit={handleSubmit} className="flex flex-col pt-[8dvh] md:pl-[50px] md:pr-[50px] sm:pr-[50px] sm:pl-[50px] pr-[30px] pl-[30px] pb-[7dvh] gap-5">
+        <div className='flex justify-center justify-items-center items-center bg-gray-200 h-screen'>
+            <div className='bg-white shadow-lg text-center rounded-[10px] mt-[23px]'>
+                <form method="post" onSubmit={handleSubmit} className="flex flex-col pt-[5dvh] md:pl-[50px] md:pr-[50px] sm:pr-[50px] sm:pl-[50px] pr-[30px] pl-[30px] pb-[5dvh] gap-5">
                     <h1 className="font-bold text-3xl">Register</h1>
                     <div className="error-message" style={{ color: 'red', textAlign: 'center', fontSize: 10, marginTop: '-1px' }}>{formErrors?.formError}</div>
 
@@ -115,7 +115,7 @@ export default function Register() {
                         <p style={{ color: 'red', textAlign: 'center', fontSize: 10, marginTop: '-4px' }} className="error-message">{formErrors?.rePassword}</p>
                     </div>
 
-                    <button type="submit" className="mt-10 border border-background mx-auto p-2 rounded-[5px] w-[300px] hover:bg-orange-400 duration-500">Login</button>
+                    <button type="submit" className="mt-7 text-white bg-orange-400 border border-primary mx-auto p-2 rounded-[5px] w-[300px] hover:bg-black duration-500">Login</button>
                 </form>
             </div>
         </div>
