@@ -1,15 +1,17 @@
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 
-import Home from './pages/Home/Home';
-import Login from './pages/Login/Login';
 import Layout from './Layout';
+import Home from './pages/Home/Home';
 import useAuth from './hooks/useAuth';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
 
 
 import './App.css'
 
 function App() {
+  
   const [auth, setAuth] = useAuth('auth', '')
 
   return (
@@ -19,11 +21,12 @@ function App() {
           <Route element={<Layout />}>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
             {/* <Route path='/profile' element={<PrivateRoute><Profile userData={auth} /></PrivateRoute>} />
             <Route path='/create' element={<PrivateRoute><Create userData={auth} /></PrivateRoute>} />
             <Route path='/edit/:id' element={<PrivateRoute><Edit userData={auth} /></PrivateRoute>} />
             <Route path='/logout' element={<Logout onLogout={onLogout} />} />
-            <Route path='/register' element={<PublicRoute><Register /></PublicRoute>} /> */}
+            // */}
             <Route path='/' element={<Home />} />
           </Route>
         </Routes>
