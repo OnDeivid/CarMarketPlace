@@ -21,8 +21,15 @@ export default function Catalog() {
                         <CatalogCard key={car._id} car={car} />
                     )
 
-                }) : <div>sorry</div>}
-                
+                }) :
+                    <div className="flex justify-center font-bold w-[100dvw] bg-red-900 p-20">
+                        <img src="./noCarsPoliceMan.png" alt='police' className="w-[30vh]" />
+                        <h1 className="text-3xl self-center uppercase text-white text-center">
+                            Oopsie! No cars have been added yet.
+                        </h1>
+                    </div>
+                }
+
             </div>
         </div>
     )
