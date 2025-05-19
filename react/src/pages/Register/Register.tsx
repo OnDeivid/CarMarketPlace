@@ -115,7 +115,7 @@ export default function Register() {
                         <p style={{ color: 'red', textAlign: 'center', fontSize: 10, marginTop: '-4px' }} className="error-message">{formErrors?.rePassword}</p>
                     </div>
 
-                    <button type="submit" className="mt-7 text-white bg-orange-400 border border-primary mx-auto p-2 rounded-[5px] w-[300px] hover:bg-black duration-500">Login</button>
+                    <button type="submit" className="mt-7 text-white bg-orange-400 border border-primary mx-auto p-2 rounded-[5px] w-[300px] hover:bg-black duration-500">Register</button>
                 </form>
             </div>
         </div>
