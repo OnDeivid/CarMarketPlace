@@ -1,11 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 import { BiSearchAlt } from "react-icons/bi";
 
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
+
+
+import Filter from "../../components/Filter/Filter";
+import ImgSlideShow from "./ImgSlideShow";
 import Catalog from '../Catalog/Catalog'
-import carImage from '../../../public/Cars/1.png'
-
 
 const motionParagraphs = [
     {
@@ -30,14 +35,21 @@ const motionParagraphs = [
     },
 ];
 
-
 export default function Home() {
     const navigate = useNavigate()
 
+    const [showFilter, setShowFilter] = useState(false)
+
+    const authContext = useContext(AuthContext)
+
     return (
         <div className="invisible-scrollbar overflow-x-hidden bg-gray-200  w-screen text-black h-screen">
+            <AnimatePresence> 
+                {showFilter && <Filter />}
+            </AnimatePresence>
 
             <motion.div
+                onClick={() => { setShowFilter(prev => !prev) }}
                 initial={{ rotateY: 700 }}
                 animate={{ opacity: 1, rotateY: 0 }}
                 transition={{ duration: 1 }}
@@ -56,7 +68,7 @@ export default function Home() {
                 <h1 className='text-xl text-center text-black  font-thin'>Explore luxury vehicles built for those who crave excellence in performance and style</h1>
             </motion.div>
             <div
-                className='flex sm:flex-col md:flex-row md:justify-between sm:mt-10 md:mt-5 min-h-[78vh] max-h-[78.5dvh] items-center bg-gray-200' >
+                className='flex sm:flex-col md:flex-row md:justify-between sm:mt-10 md:mt-5 min-h-[79.5vh] max-h-[79.5dvh] items-center bg-gray-200' >
                 <div className='md:ml-9 flex-col text-black sm:w-full '>
 
                     {motionParagraphs.map((item, index) => (
@@ -77,23 +89,22 @@ export default function Home() {
                         transition={{ duration: 1 }}
                         className='flex flex-col relative top-24 items-start md:block sm:hidden'>
                         <div className='m-2'>
-                            <button onClick={() => { navigate('/login') }} className='pl-3 pr-3 pb-2.5 pt-2.5 m-1 min-w-[150px] rounded-md bg-gray-50 duration-300 hover:bg-gray-200' style={{ boxShadow: '0px 3px 2px 0.02px gray' }}>Login</button>
-                            <button onClick={() => { navigate('/register') }} className='pl-3 pr-3 pb-2.5 pt-2.5 m-1 min-w-[150px] rounded-md bg-gray-50 duration-300 hover:bg-gray-200' style={{ boxShadow: '0px 3px 2px 0.02px gray' }}>Register</button>
+
+                            {authContext?.auth ?
+                                <button className='pl-3 pr-3 pb-2.5 pt-2.5 m-1 min-w-[150px] rounded-md bg-gray-50 duration-300 hover:bg-gray-200' style={{ boxShadow: '0px 3px 2px 0.02px gray' }}>Profile</button>
+                                :
+                                <>
+                                    <button onClick={() => { navigate('/register') }} className='pl-3 pr-3 pb-2.5 pt-2.5 m-1 min-w-[150px] rounded-md bg-gray-50 duration-300 hover:bg-gray-200' style={{ boxShadow: '0px 3px 2px 0.02px gray' }}>Register</button>
+                                    <button onClick={() => { navigate('/login') }} className='pl-3 pr-3 pb-2.5 pt-2.5 m-1 min-w-[150px] rounded-md bg-gray-50 duration-300 hover:bg-gray-200' style={{ boxShadow: '0px 3px 2px 0.02px gray' }}>Login</button>
+                                </>
+                            }
                         </div>
-                        {/* <button className='pl-3 pr-3 pb-2.5 pt-2.5 m-1 min-w-[100px] rounded-md bg-gray-300'>Profile</button> */}
                     </motion.div>
 
                 </div>
-                <motion.img
-                    initial={{ position: 'absolute', left: 1000, opacity: 0, }}
-                    animate={{ opacity: 1, position: 'relative', left: 0, }}
-                    transition={{ duration: 1 }}
-                    src={carImage}
-                    className='md:w-[55%] sm:w-[90%] md:mt-16 sm:mt-10 z-20 md:block sm:block hidden'
-                    alt='Sport Car'
-                />
-            </div>
+                <ImgSlideShow />
+            </div >
             <Catalog />
-        </div>
+        </div >
     )
 }
