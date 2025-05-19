@@ -13,12 +13,25 @@ export interface RegisterForm {
     rePassword: string
 }
 
+export interface CreateAndEditForm {
+    model: string,
+    brand: string,
+    year: string,
+    mileage: number,
+    fuel: 'Petrol' | 'Diesel' | 'Electric',
+    price: number,
+    currency: 'EUR' | 'BGN' | 'USD',
+    description: string,
+    image: string
+}
+
+type FormEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
 
 export default function useForm<T>(initialValue: T):
-    [T, (e: React.ChangeEvent<HTMLInputElement>) => void] {
+    [T, (e: FormEvent) => void] {
     const [formValue, setFormValue] = useState<T>(initialValue)
 
-    const onChangeFormValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeFormValue = (e: FormEvent) => {
         setFormValue(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }
 

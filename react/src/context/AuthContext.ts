@@ -7,14 +7,15 @@ export interface User {
     phone: number,
     username: string,
 }
+
 export interface UserData {
-    payload: User,
-    token: string
+    payload: User | null;
+    token: string;
 }
 
 export interface AuthContextType {
-    auth: UserData | string;
-    setAuth: (value: UserData | string) => void
+    auth: UserData | null;
+    setAuth: (value: UserData | null) => void;
 }
 
 

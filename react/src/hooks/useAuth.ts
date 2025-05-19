@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { UserData } from "../context/AuthContext";
 
-export default function useAuth(key: string, initialValue: UserData | string):
-    [UserData | string, (value: UserData | string) => void] {
+export default function useAuth(key: string, initialValue: UserData | null):
+    [UserData | null, (value: UserData | null) => void] {
     const [state, setState] = useState(() => {
         const persistedStateSerialized = localStorage.getItem(key)
         if (persistedStateSerialized) {
@@ -11,7 +11,7 @@ export default function useAuth(key: string, initialValue: UserData | string):
         return initialValue
     })
 
-    const setAuth = (value: UserData | string): void => {
+    const setAuth = (value: UserData | null): void => {
         setState(value)
         localStorage.setItem(key, JSON.stringify(value))
     }
