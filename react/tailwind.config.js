@@ -12,8 +12,8 @@ export default {
         secondary: '#ffffff',
         accent: '#474646',
         loginBackground: "#cecaca",
-        filterBackground: '#474646',
-        filterField:'#f8852e'
+        filterBackground: 'black',
+        filterField: '#f8852e',
       }
     },
   },
