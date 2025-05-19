@@ -10,16 +10,16 @@ export default function CatalogCard({ car }: CatalogCardProps) {
 
   return (
     <motion.div
-      initial={{ marginTop: 30, opacity: 0 }}
-      whileInView={{ marginTop: 0, y: 0, opacity: 1 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ amount: 0.3, once: true }}
       transition={{ duration: 1 }}
 
-      className="flex flex-col m-1.5 border  border-gray-400 rounded-lg hover:border-gray-600 duration-300 shadow-md" >
+      className="flex flex-col m-2 border  border-gray-400 rounded-lg hover:border-gray-600 duration-300 shadow-md" >
       <p className="text-xs font-mono ml-4 mt-2 mb-2 text-gray-800">{dateNormalization(car.createdAt)}</p>
       <div className="max-h-[300px] w-[93%] mx-auto rounded-md overflow-hidden bg-black ">
         <img
-          className="w-full h-auto object-cover"
+          className="w-full h-auto min-h-[300px] object-cover"
           src={car.image}
           alt="Car"
         />
@@ -37,7 +37,7 @@ export default function CatalogCard({ car }: CatalogCardProps) {
 
       <p className="text-center m-5 font-extralight">{car.description}</p>
 
-      <h2 className="text-center mb-7 bg-yellow-600 mx-auto shadow-md  p-2.5 w-[87%] rounded-[3px] text-2xl font-bold">{car.price} {car.currency}</h2>
+      <h2 className="text-center mb-7 bg-yellow-600 mx-auto shadow-md  p-2.5 w-[87%] text-gray-200 rounded-[3px] text-2xl font-bold">{car.price} {car.currency}</h2>
 
     </motion.div>
   )
